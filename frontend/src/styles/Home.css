@@ -1,0 +1,123 @@
+.home-container {
+  position: relative;
+  height: 100vh;
+  background-image: url('../../public/images/college-image.webp');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+    display: none;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: float 8s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+}
+
+.particle:nth-child(odd) {
+  animation-duration: 10s;
+  width: 4px;
+  height: 4px;
+}
+
+.particle:nth-child(even) {
+  animation-delay: 2s;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  transform: translate(var(--move-x, 0), var(--move-y, 0));
+  transition: transform 0.2s ease-out;
+}
+
+.content h1 {
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.2);
+  font-weight: 700;
+  z-index: 2;
+}
+
+.content p {
+ color: #f5f5f5;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  z-index: 2;
+}
+
+.branch-cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.branch-card {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: 1.3rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+  
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.1); /* Transparent */
+  backdrop-filter: blur(12px); /* 🔥 Frosted blur */
+  -webkit-backdrop-filter: blur(12px);
+  
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.branch-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Optional: different subtle gradient per card */
+.branch-card.bca {
+   transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}

@@ -1,35 +1,39 @@
-// src/pages/Home.jsx
-import { useNavigate } from "react-router-dom";
-import "../styles/branchSelection.css";
+import React, { useEffect } from "react";
+import "../styles/Home.css";
 
-export default function Home() {
-  const navigate = useNavigate();
-
-  const branches = [
-    { name: "BCA", color: "#3b82f6" },
-    { name: "BCOM", color: "#10b981" },
-    { name: "BA", color: "#8b5cf6" },
-  ];
+const Home = () => {
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const moveX = (e.clientX / window.innerWidth) * 10;
+      const moveY = (e.clientY / window.innerHeight) * 10;
+      document.documentElement.style.setProperty("--move-x", `${moveX}px`);
+      document.documentElement.style.setProperty("--move-y", `${moveY}px`);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
-    <div className="home-wrapper">
-      <div className="header-section">
-        <h1 className="main-title">Attendance System</h1>
-        <p className="subtitle">Select your branch to continue</p>
-      </div>
-
-      <div className="branch-wrapper">
-        {branches.map((branch) => (
-          <div
-            key={branch.name}
-            className="branch-box"
-            style={{ backgroundColor: branch.color }}
-            onClick={() => navigate(`/year/${branch.name}`)}
-          >
-            <span className="branch-text">{branch.name}</span>
-          </div>
+    <div
+      className="home-container"
+    >
+      <div className="overlay"></div>
+      <div className="particles">
+        {[...Array(25)].map((_, i) => (
+          <span key={i} className="particle"></span>
         ))}
+      </div>
+      <div className="content">
+        <h1>Attendance System</h1>
+        <p>Select your branch to continue</p>
+        <div className="branch-cards">
+          <div className="branch-card bca">BCA</div>
+          <div className="branch-card bcom">BCOM</div>
+          <div className="branch-card ba">BA</div>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default Home;
